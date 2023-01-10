@@ -1,38 +1,44 @@
-.App {
-  text-align: center;
+*{
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+body{
+  margin: 0;
+  font-family: 'Comic Neue', cursive;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.header{
+  background-color: #FFC017;
+  position: fixed;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.mainSec{
+  background-color: #FFC017;
 }
-
-.App-link {
-  color: #61dafb;
+.mainTitle{
+  font-size: 6rem;
+  font-family: 'Times New Roman' ,  serif;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.mainTxt{
+  font-size: 24px;
+  font-weight: 400;
+}
+.proName{
+  font-size: 12px;
+  font-weight: 500;
+}
+.myTrendNewsTitle{
+  font-size: 16px;
+  font-weight: 700;
+}
+.cardFooter>span{
+  font-size: 12px;
+  font-weight: 400;
+  color: #757575;
+}
+.trendNewsHeader{
+  font-size: 11px;
+  font-weight: 700;
+  color: #292929;
+  margin: 0;
 }
