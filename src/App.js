@@ -3,16 +3,35 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './component/header';
 import MainSec from './component/main';
 import TrendNews from './component/trendingNews';
+import Aside from './component/aside';
+import News from './component/news';
+import React , {useState } from 'react';
+import Modal from './component/modal';
+
 
 function App() {
   let myData = {
     header: {
       logo: require('./images/logo.png'),
-      navBar: ['Our story' , 'Membership' , 'Write' , 'Sign in'],
+      navBar: [
+      {
+        id: 1 , title: 'Our story' , link: '#'
+      },
+      {
+        id: 2 , title: 'Membership', link: '#'
+      },  
+      {
+        id: 3 , title: 'Write', link: '#'
+      },     
+      {
+        id: 4 , title: 'Sign in', link: '#'
+      }
+    ],
       btn: {
         btnText: 'Get Started',
         textColor: 'white',
-        background: '#000'
+        background: '#000',
+        radius: '30px'
       }
     },
     mainSection: {
@@ -22,7 +41,9 @@ function App() {
         btn:{
             btnText: 'Start reading',
             textColor: 'white',
-            background: '#000'
+            background: '#000',
+            radius: '30px',
+            size: '20px',
         }
     },
     trendNews:{
@@ -72,21 +93,197 @@ function App() {
                 readingTime: '3'
             }
         ]
+    },
+    news:[
+        {
+            newsImg: require('./images/news.png'),
+            proImg: require('./images/pro1.png'),
+            proName: 'Dr. Tom Frieden',
+            title: 'Understanding Long Covid',
+            txt: 'We know more now than before, and it’s still alarming',
+            date: 'Dec 19, 2022',
+            readingTime: '9 min read',
+            btn:{
+                btnText: 'Long Covid',
+                background: '#F2F2F2',
+                radius: '10px',
+                size: '13px',
+                textColor: '#757575'
+            }
+        },   
+        {
+            newsImg: require('./images/news.png'),
+            proImg: require('./images/pro1.png'),
+            proName: 'David Bowles',
+            title: 'Learning to Cope with Estrangement: When Children “Cancel” Their Parents',
+            txt: 'We know more now than before, and it’s still alarming',
+            date: 'Dec 19, 2022',
+            readingTime: '9 min read',
+            btn:{
+                btnText: 'Parental Alienation',
+                background: '#F2F2F2',
+                radius: '10px',
+                size: '13px',
+                textColor: '#757575'
+            }
+        },   
+        {
+            newsImg: require('./images/news.png'),
+            proImg: require('./images/pro1.png'),
+            proName: 'Ed Ergenzinger',
+            title: 'ChatGPT Is Having a Thomas Edison Moment',
+            txt: 'Why breakthrough technologies need to be accessible',
+            date: 'Dec 19, 2022',
+            readingTime: '9 min read',
+            btn:{
+                btnText: 'Gpt 3',
+                background: '#F2F2F2',
+                radius: '10px',
+                size: '13px',
+                textColor: '#757575'
+            }
+        },   
+        {
+            newsImg: require('./images/news.png'),
+            proImg: require('./images/pro1.png'),
+            proName: 'Thomas Smith',
+            title: 'Spotify’s Year-End Lists Are the Ultimate Personality Test',
+            txt: 'Why the mass sharing of the music streaming service’s year-end lists is uniquely telling',
+            date: 'Dec 19, 2022',
+            readingTime: '9 min read',
+            btn:{
+                btnText: 'Music',
+                background: '#F2F2F2',
+                radius: '10px',
+                size: '13px',
+                textColor: '#757575'
+            }
+        },   
+        {
+            newsImg: require('./images/news.png'),
+            proImg: require('./images/pro1.png'),
+            proName: 'Allegra Hobbs',
+            title: 'Why Your Team Needs a Weekly Metrics Review',
+            txt: 'We know more now than before, and it’s still alarming',
+            date: 'Dec 19, 2022',
+            readingTime: '9 min read',
+            btn:{
+                btnText: 'Data',
+                background: '#F2F2F2',
+                radius: '10px',
+                size: '13px',
+                textColor: '#757575'
+            }
+        },   
+        {
+            newsImg: require('./images/news.png'),
+            proImg: require('./images/pro1.png'),
+            proName: 'Julie Zhuo',
+            title: 'Tyrion Lannister and The 7 Habits of Highly Effective People',
+            txt: 'We know more now than before, and it’s still alarming',
+            date: 'Dec 19, 2022',
+            readingTime: '9 min read',
+            btn:{
+                btnText: 'Game Of Thrones',
+                background: '#F2F2F2',
+                radius: '10px',
+                size: '13px',
+                textColor: '#757575'
+            }
+        },   
+        {
+            newsImg: require('./images/news.png'),
+            proImg: require('./images/pro1.png'),
+            proName: 'Elliot Graebert',
+            title: 'Microdosing, Mastodon, and Jonah Hill.',
+            txt: 'We know more now than before, and it’s still alarming',
+            date: 'Dec 19, 2022',
+            readingTime: '9 min read',
+            btn:{
+                btnText: 'Mental Health',
+                background: '#F2F2F2',
+                radius: '10px',
+                size: '13px',
+                textColor: '#757575'
+            }
+        },   
+        {
+            newsImg: require('./images/news.png'),
+            proImg: require('./images/pro1.png'),
+            proName: 'Mindy Stern',
+            title: 'What if failure is the plan?',
+            txt: 'I’ve been thinking a lot about failure lately. Failure comes in many forms, but I’m especially interested in situations in which people…',
+            date: 'Dec 19, 2022',
+            readingTime: '9 min read',
+            btn:{
+                btnText: 'Twitter',
+                background: '#F2F2F2',
+                radius: '10px',
+                size: '13px',
+                textColor: '#757575'
+            }
+        },   
+        {
+            newsImg: require('./images/news.png'),
+            proImg: require('./images/pro1.png'),
+            proName: 'danah boyd',
+            title: 'Understanding Long Covid',
+            txt: 'We know more now than before, and it’s still alarming',
+            date: 'Dec 19, 2022',
+            readingTime: '9 min read',
+            btn:{
+                btnText: 'Long Covid',
+                background: '#F2F2F2',
+                radius: '10px',
+                size: '13px',
+                textColor: '#757575'
+            }
+        },   
+        {
+            newsImg: require('./images/news.png'),
+            proImg: require('./images/pro1.png'),
+            proName: 'Eric Feng',
+            title: 'Why are there so many Web3 startups?',
+            txt: 'This week, Pitchbook published their latest Emerging Tech Indicator (ETI) report which tracks early stage investment activity amongst the…',
+            date: 'Dec 19, 2022',
+            readingTime: '9 min read',
+            btn:{
+                btnText: 'Web 3',
+                background: '#F2F2F2',
+                radius: '10px',
+                size: '13px',
+                textColor: '#757575'
+            }
+        },   
+    ],
+    aside:{
+        title: 'DISCOVER MORE OF WHAT MATTERS TO YOU',
+        background: 'white',
+        textColor: '#757575',
+        size: '13px', 
+        newsType: ['Programming' , 'Data Science' , 'Technology' , 'Self Improvement' ,'Writing','Relationships' ,'Machine Learning' ,'Productivity' ,'Politics'],
+        menu: ["Help" , 'Status' , 'Writers ' , 'Blog' , 'Careers' , 'Privacy' , 'Terms' ,' About' , 'Text to speech']
     }
+  }
+  const [myModal , setMymodal] = useState(false)
+  function Modalshow(){
+    setMymodal(!myModal)
+    console.log('hi')
   }
   return (
     <>
       <div className="container-fluid p-0">
-        <Header {...myData}/>
+        <Modal myModal={myModal} Modalshow={Modalshow}/>
+        <Header {...myData} Modalshow ={Modalshow}/>
         <MainSec {...myData}/>
         <TrendNews {...myData}/>
-        <div className='main'>
-            <div className='row'>
-                <div className='news col-7'>
-    
+        <div className='container-fluid d-flex justify-content-center py-5'>
+            <div className='row col-8'>
+                <div className='news col-8'>
+                    <News {...myData}/>
                 </div>
-                <div className='aside col-5 position-fixed'>
-
+                <div className='aside col-3'>
+                    <Aside {...myData}/>
                 </div>
             </div>
         </div>
