@@ -11,6 +11,9 @@ import Modal from './component/modal';
 
 function App() {
   let myData = {
+    user:{
+      name: 'amraa' , password: '24657'
+    },
     header: {
       logo: require('./images/logo.png'),
       navBar: [
@@ -265,7 +268,11 @@ function App() {
         menu: ["Help" , 'Status' , 'Writers ' , 'Blog' , 'Careers' , 'Privacy' , 'Terms' ,' About' , 'Text to speech']
     }
   }
-  const [myModal , setMymodal] = useState(false)
+  const [myModal , setMymodal] = useState(false);
+  const [myUser , setMyUser] = useState('')
+  const [userSign , setUserSign] = useState(false)
+
+
   function Modalshow(){
     setMymodal(!myModal)
     console.log('hi')
@@ -273,14 +280,14 @@ function App() {
   return (
     <>
       <div className="container-fluid p-0">
-        <Modal myModal={myModal} Modalshow={Modalshow}/>
-        <Header {...myData} Modalshow ={Modalshow}/>
-        <MainSec {...myData}/>
-        <TrendNews {...myData}/>
+        <Modal {...myData} userSign={userSign} setUserSign={setUserSign} myModal={myModal} Modalshow={Modalshow} myUser={myUser} setMyUser={setMyUser}/>
+        <Header {...myData} Modalshow ={Modalshow} userSign={userSign} setUserSign={setUserSign}/>
+        <MainSec {...myData}  userSign={userSign} setUserSign={setUserSign}/>
+        <TrendNews {...myData}  userSign={userSign} setUserSign={setUserSign}/>
         <div className='container-fluid d-flex justify-content-center py-5'>
             <div className='row col-8'>
                 <div className='news col-8'>
-                    <News {...myData}/>
+                    <News {...myData} userSign={userSign} setUserSign={setUserSign}/>
                 </div>
                 <div className='aside col-3'>
                     <Aside {...myData}/>

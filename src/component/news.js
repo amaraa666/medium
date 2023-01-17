@@ -4,7 +4,8 @@ import MyBtn from "./button"
 
 
 
-export default function News({news}){
+export default function News({news , userSign}){
+    const bg = userSign ? 'block' : 'none'
     return(
         <>
         <div className="container-fluid">
@@ -23,7 +24,19 @@ export default function News({news}){
                                 <h3>{c.title}</h3>
                                 <p>{c.text}</p>
                             </div>
-                            <div className="newsFooter d-flex gap-3">
+                            <div className="newsFooter d-flex gap-3" style={{display: bg}}>
+                                <div className="col-5">
+                                    <span>{c.date}</span>
+                                    <span>{c.readingTime}</span>
+                                    <MyBtn {...c.btn}/>
+                                </div>
+                                <div className="col-5">
+                                    <i class="bi bi-bookmark"></i>
+                                    <i class="bi bi-dash-circle"></i>
+                                    <i class="bi bi-three-dots"></i>
+                                </div>
+                            </div>
+                            <div className="newsFooter d-flex gap-3" style={{display: bg}}>
                                 <span>{c.date}</span>
                                 <span>{c.readingTime}</span>
                                 <MyBtn {...c.btn}/>

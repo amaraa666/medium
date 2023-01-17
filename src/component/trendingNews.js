@@ -1,7 +1,14 @@
 
 
 
-export default function TrendNews({trendNews}){
+export default function TrendNews({trendNews , userSign , setUserSign}){
+    if(userSign){
+        return(
+            <>
+            
+            </>
+        )
+    }
     return(
         <>
         <div className="container-fluid d-flex flex-wrap justify-content-center py-5 border-bottom border-dark">

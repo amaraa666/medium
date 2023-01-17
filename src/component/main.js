@@ -2,7 +2,12 @@ import MyBtn from "./button"
 
 
 
-export default function MainSec({mainSection}){
+export default function MainSec({mainSection , userSign , setUserSign}){
+    if(userSign){
+        return(
+            <></>
+        )
+    }
     return(
         <>
         <div className="mainSec container-fluid d-flex justify-content-center pt-5">

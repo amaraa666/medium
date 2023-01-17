@@ -2,8 +2,17 @@
 
 
 
-export default function Modal({ Modalshow , myModal }){
+export default function Modal({user , Modalshow , myModal , myUser , setMyUser , userSign , setUserSign}){
     const bg = myModal ? 'flex' : 'none'
+    function myUserFunc(){
+        if(myUser === user.name){
+            window.alert('success')
+            setUserSign(true)
+            Modalshow()
+          }else{
+            window.alert('err')
+          }
+    }
     return(
         <>
         <div className="modal-section w-100 h-100 position-fixed top-0 justify-content-center align-items-center" style={{display: bg}} onClick={Modalshow}>
@@ -15,7 +24,8 @@ export default function Modal({ Modalshow , myModal }){
                     </div>    
                     <div className="modal-body">
                         <span>Your Email</span>
-                        <input />
+                        <input value={myUser} onChange={(e)=>setMyUser(e.target.value)}/>
+                        <button onClick={myUserFunc}>Continue</button>
                     </div>
                     <div className="modal-footer">
     
