@@ -1,19 +1,16 @@
-import MyBtn from "./button"
+import MyBtn from "./button";
 
+export default function News({news , userSign , mySavedItem}){
+    const bg = userSign ? 'flex' : 'none';
 
-
-
-
-export default function News({news , userSign}){
-    const bg = userSign ? 'block' : 'none'
     return(
         <>
         <div className="container-fluid">
             <div className="row flex-column gap-2">
               {news.map((c , index)=>{
-                return(
+                  return(
                     <div key={index} className="newsCard d-flex">
-                        <div className="newsTitle col-6">
+                        <div className="newsTitle col-7">
                             <div className="pro d-flex">
                                 <div className="imgPro">
                                     <img src={c.proImg} alt=''/>
@@ -24,25 +21,25 @@ export default function News({news , userSign}){
                                 <h3>{c.title}</h3>
                                 <p>{c.text}</p>
                             </div>
-                            <div className="newsFooter d-flex gap-3" style={{display: bg}}>
-                                <div className="col-5">
+                            <div className="newsFooter gap-3" style={{display: bg}}>
+                                <div className="col-9 d-flex gap-2">
                                     <span>{c.date}</span>
                                     <span>{c.readingTime}</span>
                                     <MyBtn {...c.btn}/>
                                 </div>
-                                <div className="col-5">
-                                    <i class="bi bi-bookmark"></i>
-                                    <i class="bi bi-dash-circle"></i>
-                                    <i class="bi bi-three-dots"></i>
-                                </div>
+                                <div className="col-3 d-flex gap-2">
+                                    <i className="bi bi-bookmark" style={{color: c.saved ? 'yellow' : ''}} onClick={()=>mySavedItem(c.id)}></i>
+                                    <i className="bi bi-dash-circle"></i>
+                                    <i className="bi bi-three-dots"></i>
+                                </div>                                
                             </div>
-                            <div className="newsFooter d-flex gap-3" style={{display: bg}}>
+                            <div className="newsFooter gap-3" style={{display: bg === 'flex' ? 'none' : 'flex'}}>
                                 <span>{c.date}</span>
                                 <span>{c.readingTime}</span>
                                 <MyBtn {...c.btn}/>
                             </div>
                         </div>
-                        <div className="newsImg col">
+                        <div className="newsImg col-5">
                             <img src={c.newsImg} alt=''/>
                         </div>
                     </div>

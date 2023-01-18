@@ -31,17 +31,17 @@ export default function Header({header , Modalshow , userSign , setUserSign}){
                             <input placeholder="Search medium" className="rounded-4 border-0 p-1 bg-transparent"/>
                         </div>
                     </div>
-                    <div className="col-4 d-flex justify-content-end align-items-center">
-                        <div className="col-2 d-flex text-aling-center justify-content-center gap-2">
-                            <i class="bi bi-pencil-square"></i>
-                            <span>Write</span>
+                    <div className="col-3 d-flex justify-content-end align-items-center">
+                        <div className="col-2 d-flex text-aling-center justify-content-center gap-2" onClick={Modalshow}>
+                            <i className="bi bi-pencil-square"></i>
+                            <span className="d-flex align-items-center">Write</span>
                         </div>
                         <div className="col-2 d-flex text-aling-center justify-content-center">
-                            <i class="bi bi-bell"></i>
+                            <i className="bi bi-bell"></i>
                         </div>
                         <div className="col-1">
                             <div className="proImg">
-                                <img src={require('../images/userImg.png')} className='w-100' alt=""/>
+                                <img src={require('../images/userImg.png')} className='w-100' alt="" onClick={()=>setUserSign(!userSign)}/>
                             </div>
                         </div>
                     </div>

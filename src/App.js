@@ -106,6 +106,8 @@ function App() {
             txt: 'We know more now than before, and it’s still alarming',
             date: 'Dec 19, 2022',
             readingTime: '9 min read',
+            id: 1,
+            saved: false,
             btn:{
                 btnText: 'Long Covid',
                 background: '#F2F2F2',
@@ -122,13 +124,15 @@ function App() {
             txt: 'We know more now than before, and it’s still alarming',
             date: 'Dec 19, 2022',
             readingTime: '9 min read',
+            id: 2,
+            saved: false,
             btn:{
                 btnText: 'Parental Alienation',
                 background: '#F2F2F2',
                 radius: '10px',
                 size: '13px',
                 textColor: '#757575'
-            }
+            },
         },   
         {
             newsImg: require('./images/news.png'),
@@ -138,6 +142,8 @@ function App() {
             txt: 'Why breakthrough technologies need to be accessible',
             date: 'Dec 19, 2022',
             readingTime: '9 min read',
+            id: 3,
+            saved: false,
             btn:{
                 btnText: 'Gpt 3',
                 background: '#F2F2F2',
@@ -154,6 +160,8 @@ function App() {
             txt: 'Why the mass sharing of the music streaming service’s year-end lists is uniquely telling',
             date: 'Dec 19, 2022',
             readingTime: '9 min read',
+            id: 4,
+            saved: false,
             btn:{
                 btnText: 'Music',
                 background: '#F2F2F2',
@@ -170,6 +178,8 @@ function App() {
             txt: 'We know more now than before, and it’s still alarming',
             date: 'Dec 19, 2022',
             readingTime: '9 min read',
+            id: 5,
+            saved: false,
             btn:{
                 btnText: 'Data',
                 background: '#F2F2F2',
@@ -186,6 +196,8 @@ function App() {
             txt: 'We know more now than before, and it’s still alarming',
             date: 'Dec 19, 2022',
             readingTime: '9 min read',
+            id: 6,
+            saved: false,
             btn:{
                 btnText: 'Game Of Thrones',
                 background: '#F2F2F2',
@@ -202,6 +214,8 @@ function App() {
             txt: 'We know more now than before, and it’s still alarming',
             date: 'Dec 19, 2022',
             readingTime: '9 min read',
+            id: 7,
+            saved: false,
             btn:{
                 btnText: 'Mental Health',
                 background: '#F2F2F2',
@@ -218,6 +232,8 @@ function App() {
             txt: 'I’ve been thinking a lot about failure lately. Failure comes in many forms, but I’m especially interested in situations in which people…',
             date: 'Dec 19, 2022',
             readingTime: '9 min read',
+            id: 8,
+            saved: false,
             btn:{
                 btnText: 'Twitter',
                 background: '#F2F2F2',
@@ -234,6 +250,8 @@ function App() {
             txt: 'We know more now than before, and it’s still alarming',
             date: 'Dec 19, 2022',
             readingTime: '9 min read',
+            id: 9,
+            saved: false,
             btn:{
                 btnText: 'Long Covid',
                 background: '#F2F2F2',
@@ -250,6 +268,8 @@ function App() {
             txt: 'This week, Pitchbook published their latest Emerging Tech Indicator (ETI) report which tracks early stage investment activity amongst the…',
             date: 'Dec 19, 2022',
             readingTime: '9 min read',
+            id: 10,
+            saved: false,
             btn:{
                 btnText: 'Web 3',
                 background: '#F2F2F2',
@@ -277,6 +297,25 @@ function App() {
     setMymodal(!myModal)
     console.log('hi')
   }
+
+  function mySavedItem(id1){
+    myData.news.map((e)=>{
+      if(e.saved){
+        if(e.id === id1 ){
+          e.saved = false;
+          console.log(e.saved);
+          console.log(e);
+        }
+      }else{
+        if(e.id === id1 ){
+          e.saved = true;
+          console.log(e.saved);
+          console.log(e);
+        }
+      }
+      
+    })
+  }
   return (
     <>
       <div className="container-fluid p-0">
@@ -287,7 +326,7 @@ function App() {
         <div className='container-fluid d-flex justify-content-center py-5'>
             <div className='row col-8'>
                 <div className='news col-8'>
-                    <News {...myData} userSign={userSign} setUserSign={setUserSign}/>
+                    <News {...myData} userSign={userSign} setUserSign={setUserSign} mySavedItem={mySavedItem}/>
                 </div>
                 <div className='aside col-3'>
                     <Aside {...myData}/>

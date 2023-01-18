@@ -1,7 +1,7 @@
 
 
 
-export default function MyBtn({btnText , textColor , background , radius , size}){
+export default function MyBtn({btnText , textColor , background , radius , size }){
     let style = {
         background: background,
         color: textColor,
@@ -10,6 +10,6 @@ export default function MyBtn({btnText , textColor , background , radius , size}
         fontSize: size
     }
     return(
-        <a href="a" className="btn border" style={style}>{btnText}</a>
+        <div className="btn border" style={style}>{btnText}</div>
     )
 }
