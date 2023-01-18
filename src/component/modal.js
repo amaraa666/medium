@@ -1,8 +1,8 @@
 
+import { useNavigate } from "react-router-dom";
 
 
-
-export default function Modal({user , Modalshow , myModal , myUser , setMyUser , userSign , setUserSign}){
+export default function Modal({user , Modalshow , myModal , myUser , setMyUser , userSign , setUserSign , adminLogin , setAdminLogin}){
     const bg = myModal ? 'flex' : 'none'
     function myUserFunc(){
         if(myUser === user.name){
@@ -13,6 +13,8 @@ export default function Modal({user , Modalshow , myModal , myUser , setMyUser ,
             window.alert('err')
           }
     }
+    console.log(adminLogin)
+    const navigate = useNavigate()
     if(userSign){
         return(
             <>
@@ -30,7 +32,7 @@ export default function Modal({user , Modalshow , myModal , myUser , setMyUser ,
                             </form>
                         </div>
                         <div className="modal-footer">
-        
+                            
                         </div>
                     </div>
                 </div>
@@ -52,8 +54,10 @@ export default function Modal({user , Modalshow , myModal , myUser , setMyUser ,
                         <input value={myUser} onChange={(e)=>setMyUser(e.target.value)}/>
                         <button onClick={myUserFunc} className="btn border">Continue</button>
                     </div>
-                    <div className="modal-footer">
-    
+                    <div className="modal-footer d-flex justify-content-center">
+                        <span onClick={()=>{setAdminLogin(!adminLogin); navigate('/login')}}>
+                            Admin login
+                        </span>
                     </div>
                 </div>
             </div>

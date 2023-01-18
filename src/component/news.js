@@ -1,8 +1,26 @@
 import MyBtn from "./button";
 
-export default function News({news , userSign , mySavedItem}){
+export default function News({news , userSign}){
     const bg = userSign ? 'flex' : 'none';
-
+    function mySavedItem(id1){
+        news.map((e)=>{
+          if(e.saved){
+            if(e.id === id1 ){
+              e.saved = false;
+              console.log(e.saved);
+              console.log(e);
+              console.log('hi')
+            }
+          }else{
+            if(e.id === id1 ){
+              e.saved = true;
+              console.log(e.saved);
+              console.log(e);
+            }
+          }
+          
+        })
+      }
     return(
         <>
         <div className="container-fluid">
