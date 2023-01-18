@@ -1,8 +1,8 @@
 
 
 
-export default function TrendNews({trendNews , userSign , setUserSign}){
-    if(userSign){
+export default function TrendNews({trendNews , myAct}){
+    if(myAct.userSign){
         return(
             <>
             

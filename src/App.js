@@ -291,28 +291,63 @@ function App() {
             menu: ["Help", 'Status', 'Writers ', 'Blog', 'Careers', 'Privacy', 'Terms', ' About', 'Text to speech']
         }
     }
-    const [myModal, setMymodal] = useState(false);
-    const [myUser, setMyUser] = useState('')
-    const [userSign, setUserSign] = useState(false)
-    const [adminLogin, setAdminLogin] = useState(false)
 
+    const myObj = {
+        myModal: false,
+        myUser: '',
+        userSign: false,
+        adminLogin: false,
+    }
+
+    const [isPosted , setIsPosted] = useState(myData.news);
+
+
+    const myPostObj ={
+        newsImg: require('./images/news.png'),
+        proImg: require('./images/pro1.png'),
+        proName: myData.user.name,
+        title: '',
+        txt: '',
+        date: 'Dec 19, 2022',
+        readingTime: '9 min read',
+        id: isPosted[isPosted.length-1].id+1,
+        saved: false,
+        btn: {
+            btnText: '',
+            background: '#F2F2F2',
+            radius: '10px',
+            size: '13px',
+            textColor: '#757575'
+        }
+    }
+    const [myAct , setMyAct] = useState(myObj);
+    const [myPost , setMyPost] = useState(myPostObj);
+    
     function Modalshow() {
-        setMymodal(!myModal)
+         setMyAct({...myAct , myModal: myAct.myModal ? false : true})
         console.log('hi')
     }
 
+    const myArrr = [...isPosted]
+    function AddPost(){
+        console.log(myPost)
+        myArrr.push(myPost)
+        setIsPosted(myArrr)
+        Modalshow()
+        setMyPost(myPostObj)
+    }
     return (
         <>
-            {!adminLogin ? (
+            {!myAct.adminLogin ? (
                 <div className="container-fluid p-0">
-                    <Modal {...myData} userSign={userSign} setUserSign={setUserSign} myModal={myModal} Modalshow={Modalshow} myUser={myUser} setMyUser={setMyUser} adminLogin={adminLogin} setAdminLogin={setAdminLogin} />
-                    <Header {...myData} Modalshow={Modalshow} userSign={userSign} setUserSign={setUserSign} />
-                    <MainSec {...myData} userSign={userSign} setUserSign={setUserSign} />
-                    <TrendNews {...myData} userSign={userSign} setUserSign={setUserSign} />
+                    <Modal {...myData}  Modalshow={Modalshow} myAct={myAct} setMyAct={setMyAct} AddPost={AddPost} myPost={myPost} setMyPost={setMyPost}/>
+                    <Header {...myData} Modalshow={Modalshow} myAct={myAct} setMyAct={setMyAct}/>
+                    <MainSec {...myData} myAct={myAct}/>
+                    <TrendNews {...myData} myAct={myAct}/>
                     <div className='container-fluid d-flex justify-content-center py-5'>
                         <div className='row col-8'>
                             <div className='news col-8'>
-                                <News {...myData} userSign={userSign} setUserSign={setUserSign} />
+                                <News {...myData} myAct={myAct} setMyAct={setMyAct} isPosted={isPosted} setIsPosted={setIsPosted}/>
                             </div>
                             <div className='aside col-3'>
                                 <Aside {...myData} />
@@ -323,7 +358,7 @@ function App() {
             ) : (
                 <div>
                     <Routes>
-                        <Route exact path='/login' element={<AdminLog myModal={myModal} Modalshow={Modalshow} />} />
+                        <Route exact path='/login' element={<AdminLog myAct={myAct} Modalshow={Modalshow} />} />
                         <Route path='/admin' element={<Admin />} />
                     </Routes>
                 </div>

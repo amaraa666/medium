@@ -1,31 +1,32 @@
+import { useState } from "react";
 import MyBtn from "./button";
 
-export default function News({news , userSign}){
-    const bg = userSign ? 'flex' : 'none';
+export default function News({isPosted , setIsPosted, myAct}){
+    const bg = myAct.userSign ? 'flex' : 'none';
+    console.log(isPosted)
+
     function mySavedItem(id1){
-        news.map((e)=>{
+      const myArr = [...isPosted]
+      myArr.map((e)=>{
           if(e.saved){
-            if(e.id === id1 ){
+            if(e.id === id1){
+              console.log()
               e.saved = false;
-              console.log(e.saved);
-              console.log(e);
-              console.log('hi')
+              setIsPosted(myArr)
             }
           }else{
             if(e.id === id1 ){
               e.saved = true;
-              console.log(e.saved);
-              console.log(e);
+              setIsPosted(myArr)
             }
           }
-          
         })
       }
     return(
         <>
         <div className="container-fluid">
             <div className="row flex-column gap-2">
-              {news.map((c , index)=>{
+              {isPosted.map((c , index)=>{
                   return(
                     <div key={index} className="newsCard d-flex">
                         <div className="newsTitle col-7">
@@ -37,7 +38,7 @@ export default function News({news , userSign}){
                             </div>
                             <div className="newsBody">
                                 <h3>{c.title}</h3>
-                                <p>{c.text}</p>
+                                <p>{c.txt}</p>
                             </div>
                             <div className="newsFooter gap-3" style={{display: bg}}>
                                 <div className="col-9 d-flex gap-2">
@@ -62,7 +63,7 @@ export default function News({news , userSign}){
                         </div>
                     </div>
                 )
-              })}  
+              })} 
             </div>
         </div>
         </>

@@ -2,8 +2,8 @@ import MyBtn from "./button"
 
 
 
-export default function MainSec({mainSection , userSign , setUserSign}){
-    if(userSign){
+export default function MainSec({mainSection , myAct}){
+    if(myAct.userSign){
         return(
             <></>
         )

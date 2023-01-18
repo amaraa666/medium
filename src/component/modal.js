@@ -1,21 +1,19 @@
 
 import { useNavigate } from "react-router-dom";
 
-
-export default function Modal({user , Modalshow , myModal , myUser , setMyUser , userSign , setUserSign , adminLogin , setAdminLogin}){
-    const bg = myModal ? 'flex' : 'none'
+export default function Modal({user , Modalshow , myAct , setMyAct , AddPost , myPost , setMyPost}){
+    const bg = myAct.myModal ? 'flex' : 'none'
     function myUserFunc(){
-        if(myUser === user.name){
+        if(myAct.myUser === user.name){
+            setMyAct({...myAct , userSign: myAct.userSign ? false : true , myModal: false})
             window.alert('success')
-            setUserSign(true)
-            Modalshow()
           }else{
             window.alert('err')
           }
     }
-    console.log(adminLogin)
     const navigate = useNavigate()
-    if(userSign){
+    console.log(myAct)
+    if(myAct.userSign){
         return(
             <>
             <div className="modal-section w-100 h-100 position-fixed top-0 justify-content-center align-items-center" style={{display: bg}} onClick={Modalshow}>
@@ -23,11 +21,11 @@ export default function Modal({user , Modalshow , myModal , myUser , setMyUser ,
                     <div className="col-10 py-5 d-flex flex-column gap-3">   
                         <div className="modal-body d-flex flex-column align-items-center gap-3">
                             <form className="d-flex flex-column gap-3 align-items-center">
-                                <input placeholder="Title" className="w-100 border-0 fs-1"/>
-                                <input placeholder="Text" className="w-100 border-0 fs-2"/>
-                                <input placeholder="Category" className="w-100 border-0 fs-3"/>
+                                <input placeholder="Title" value={myPost.title} onChange={(e)=>setMyPost({...myPost , title: e.target.value})} className="w-100 border-0 fs-1"/>
+                                <input placeholder="Text" value={myPost.txt} onChange={(e)=>setMyPost({...myPost , txt: e.target.value})} className="w-100 border-0 fs-2"/>
+                                {/* <input placeholder="Category" value={myPost.btn.btnText} onChange={(e)=>setMyPost({...myPost , btnText: e.target.value})} className="w-100 border-0 fs-3"/> */}
                                 <div className="col-4">
-                                    <button className="btn border rounded-3 bg-success">Publish</button>
+                                    <div onClick={AddPost} className="btn border rounded-3 bg-success">Publish</div>
                                 </div>
                             </form>
                         </div>
@@ -51,11 +49,11 @@ export default function Modal({user , Modalshow , myModal , myUser , setMyUser ,
                     </div>    
                     <div className="modal-body d-flex flex-column align-items-center gap-3">
                         <span>Your Email</span>
-                        <input value={myUser} onChange={(e)=>setMyUser(e.target.value)}/>
+                        <input value={myAct.myUser} onChange={(e)=>setMyAct({...myAct , myUser: e.target.value})}/>
                         <button onClick={myUserFunc} className="btn border">Continue</button>
                     </div>
                     <div className="modal-footer d-flex justify-content-center">
-                        <span onClick={()=>{setAdminLogin(!adminLogin); navigate('/login')}}>
+                        <span onClick={()=>{setMyAct({...myAct , adminLogin: myAct.adminLogin ? false : true , myModal: true}); navigate('/login') ;}}>
                             Admin login
                         </span>
                     </div>

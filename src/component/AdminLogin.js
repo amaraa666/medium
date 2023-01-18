@@ -1,8 +1,9 @@
 
 import { useNavigate } from "react-router-dom"
 
-export default function AdminLog({ Modalshow, myModal }) {
-    const bg = myModal ? 'flex' : 'none'
+export default function AdminLog({ Modalshow , myAct }) {
+    console.log(myAct)
+    const bg = myAct.myModal ? 'flex' : 'none'
     const navigate = useNavigate()
 
     return (

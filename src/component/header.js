@@ -4,7 +4,7 @@ import MyBtn from "./button";
 
 
 
-export default function Header({header , Modalshow , userSign , setUserSign}){
+export default function Header({header , Modalshow , myAct , setMyAct}){
     const [bg , setBg] = useState('#FFC017')
     const [bgBtn , setBgbtn] = useState(header.btn.background);
     const handleScroll = ()=>{
@@ -17,7 +17,7 @@ export default function Header({header , Modalshow , userSign , setUserSign}){
         }
     }
     window.addEventListener("scroll" , handleScroll)
-    if(userSign){
+    if(myAct.userSign){
         return(
             <>
             <div className="container-fluid border-bottom border-1 d-flex justify-content-center p-3">
@@ -41,7 +41,7 @@ export default function Header({header , Modalshow , userSign , setUserSign}){
                         </div>
                         <div className="col-1">
                             <div className="proImg">
-                                <img src={require('../images/userImg.png')} className='w-100' alt="" onClick={()=>setUserSign(!userSign)}/>
+                                <img src={require('../images/userImg.png')} className='w-100' alt="" onClick={()=>setMyAct({...myAct , userSign: false ? true : false})}/>
                             </div>
                         </div>
                     </div>
