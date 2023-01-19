@@ -299,10 +299,10 @@ function App() {
         adminLogin: false,
     }
 
-    const [isPosted , setIsPosted] = useState(myData.news);
+    const [isPosted, setIsPosted] = useState(myData.news);
 
 
-    const myPostObj ={
+    const myPostObj = {
         newsImg: require('./images/news.png'),
         proImg: require('./images/pro1.png'),
         proName: myData.user.name,
@@ -310,7 +310,7 @@ function App() {
         txt: '',
         date: 'Dec 19, 2022',
         readingTime: '9 min read',
-        id: isPosted[isPosted.length-1].id+1,
+        id: isPosted[isPosted.length - 1].id + 1,
         saved: false,
         btn: {
             btnText: '',
@@ -320,16 +320,16 @@ function App() {
             textColor: '#757575'
         }
     }
-    const [myAct , setMyAct] = useState(myObj);
-    const [myPost , setMyPost] = useState(myPostObj);
-    
+    const [myAct, setMyAct] = useState(myObj);
+    const [myPost, setMyPost] = useState(myPostObj);
+
     function Modalshow() {
-         setMyAct({...myAct , myModal: myAct.myModal ? false : true})
+        setMyAct({ ...myAct, myModal: myAct.myModal ? false : true })
         console.log('hi')
     }
 
     const myArrr = [...isPosted]
-    function AddPost(){
+    function AddPost() {
         console.log(myPost)
         myArrr.push(myPost)
         setIsPosted(myArrr)
@@ -340,14 +340,14 @@ function App() {
         <>
             {!myAct.adminLogin ? (
                 <div className="container-fluid p-0">
-                    <Modal {...myData}  Modalshow={Modalshow} myAct={myAct} setMyAct={setMyAct} AddPost={AddPost} myPost={myPost} setMyPost={setMyPost}/>
-                    <Header {...myData} Modalshow={Modalshow} myAct={myAct} setMyAct={setMyAct}/>
-                    <MainSec {...myData} myAct={myAct}/>
-                    <TrendNews {...myData} myAct={myAct}/>
+                    <Modal {...myData} Modalshow={Modalshow} myAct={myAct} setMyAct={setMyAct} AddPost={AddPost} myPost={myPost} setMyPost={setMyPost} />
+                    <Header {...myData} Modalshow={Modalshow} myAct={myAct} setMyAct={setMyAct} />
+                    <MainSec {...myData} myAct={myAct} />
+                    <TrendNews {...myData} myAct={myAct} />
                     <div className='container-fluid d-flex justify-content-center py-5'>
                         <div className='row col-8'>
                             <div className='news col-8'>
-                                <News {...myData} myAct={myAct} setMyAct={setMyAct} isPosted={isPosted} setIsPosted={setIsPosted}/>
+                                <News {...myData} myAct={myAct} setMyAct={setMyAct} isPosted={isPosted} setIsPosted={setIsPosted} />
                             </div>
                             <div className='aside col-3'>
                                 <Aside {...myData} />
