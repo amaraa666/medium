@@ -48,7 +48,7 @@ export function BarChart({ myData }) {
             {
                 label: 'user',
                 // data: labels.map(() => faker.datatype.number({ min: 0, max: 10 })),
-                data: [1],
+                data: [myData.length],
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
             },
             // {

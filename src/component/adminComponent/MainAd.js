@@ -5,20 +5,7 @@ export default function MainAd({ myData }) {
         <>
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-2">
-                        <div className="nav d-flex flex-column">
-                            <div className="nav-item">
-                                <a className="nav-link text-decoration-none text-dark">Dashboard</a>
-                            </div>
-                            <div className="nav-item">
-                                <a className="nav-link text-decoration-none text-dark">News</a>
-                            </div>
-                            <div className="nav-item">
-                                <a className="nav-link text-decoration-none text-dark">Users</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-10">
+                    <div className="col-12">
                         <div className="row py-3">
                             <div className="col-md-4">
                                 <div className="card p-3">

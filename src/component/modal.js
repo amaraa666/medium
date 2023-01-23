@@ -23,7 +23,7 @@ export default function Modal({ user, Modalshow, myAct, setMyAct, AddPost, myPos
                                 <form className="d-flex flex-column gap-3 align-items-center">
                                     <input placeholder="Title" value={myPost.title} onChange={(e) => setMyPost({ ...myPost, title: e.target.value })} className="w-100 border-0 fs-1" />
                                     <input placeholder="Text" value={myPost.txt} onChange={(e) => setMyPost({ ...myPost, txt: e.target.value })} className="w-100 border-0 fs-2" />
-                                    <input placeholder="Category" value={myPost.btn.btnText} onChange={(e) => setMyPost({ ...myPost, btn: { btnText: e.target.value } })} className="w-100 border-0 fs-3" />
+                                    <input placeholder="Category" value={myPost.btn.btnText} onChange={(e) => setMyPost({ ...myPost, btn: { btnText: e.target.value ,background: '#F2F2F2',radius: '10px',size: '13px',textColor: '#757575' } })} className="w-100 border-0 fs-3" />
                                     <div className="col-4">
                                         <div onClick={AddPost} className="btn border rounded-3 bg-success">Publish</div>
                                     </div>
