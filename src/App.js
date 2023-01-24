@@ -2,6 +2,11 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+
+
+
+//component
 import AdminLog from './component/AdminLogin';
 import Admin from './component/Admin';
 import Adminlayout from './component/adminlayout';
@@ -9,7 +14,8 @@ import AdNews from './component/adminComponent/AdNews';
 import AdUSers from './component/adminComponent/AdUSers';
 import MAinSec1 from './component/MainSec';
 import MainAd from './component/adminComponent/MainAd';
-import { useEffect } from 'react';
+
+
 function App() {
     let myData = {
         user: {
@@ -337,13 +343,18 @@ function App() {
 
     const [myDataAd, setMyDataAd] = useState([])
 
-    useEffect(() => {
+    function getNewsDta(){
         fetch('https://medium-api-psi.vercel.app/api/news')
             .then((res) => res.json())
             .then((data) => {
                 setMyDataAd(data.result)
             })
+    }
+
+    useEffect(() => {
+        getNewsDta()
     }, [])
+
 
     return (
         <>
@@ -355,16 +366,12 @@ function App() {
                 <Route exact path='/login' element={<AdminLog myAct={myAct} Modalshow={Modalshow} />} />
                 <Route path='/admin' element={<Admin />} />
                 <Route element={<Adminlayout />}>
-                    <Route index path='/admin' element={<MainAd myDataAd={myDataAd} />} />
-                    <Route path='/addnews' element={<AdNews />} />
+                    <Route index path='/admin' element={<MainAd myDataAd={myDataAd} setMyDataAd={setMyDataAd} />} />
+                    <Route path='/addnews' element={<AdNews myDataAd={myDataAd} setMyDataAd={setMyDataAd} getNewsDta={getNewsDta}/>} />
                     <Route path='/addusers' element={<AdUSers />} />
                 </Route>
             </Routes>
-
         </>
     );
-
 }
-
-
 export default App;

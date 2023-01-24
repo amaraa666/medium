@@ -1,18 +1,18 @@
-import { BarChart } from "./BarChart"
-
-export default function MainAd({ myDataAd }) {
-    const myCate = []
+import { BarChart } from "./BarChart";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+export default function MainAd({myDataAd}) {
+    const navigate = useNavigate()
+    if(!localStorage.getItem('name')){
+        navigate('/login')
+    }
+    const myCate = [];
     myDataAd.filter((e) => {
         if (!myCate.includes(e.category)) {
-            myCate.push(e.category)
+            myCate.push(e.category);
         }
     })
-    console.log(myCate)
-
-
-    function DeleteMyNews() {
-
-    }
     return (
         <>
             <div className="container-fluid">
@@ -49,39 +49,6 @@ export default function MainAd({ myDataAd }) {
                         </div>
                         <div className="row">
                             <BarChart myData={myDataAd} />
-                            <div className="table-responsive">
-                                <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Title</th>
-                                            <th scope="col">Category</th>
-                                            <th scope="col">Body</th>
-                                            <th scope="col">Үйлдэл</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {myDataAd.map(({ _id, title, isTrending, category }, index) => {
-                                            return (
-                                                <tr key={index}>
-                                                    <th scope="row">{index + 1}</th>
-                                                    <td>{title}</td>
-                                                    <td>{category}</td>
-                                                    <td>
-                                                        {isTrending ? (<span className="badge bg-success">yes</span>) : (<span className="badge bg-danger">no</span>)}
-                                                    </td>
-                                                    <td>
-                                                        <div className="d-flex gap-3">
-                                                            <div className=" btn bg-danger text-light " onClick={DeleteMyNews}>Delete</div>
-                                                            <div className=" btn bg-info text-light ">Edit</div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            )
-                                        })}
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
                 </div>

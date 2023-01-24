@@ -1,29 +1,30 @@
 
 
-import { useState } from "react"
-import AddUserMod from "./myUserModal"
-import { useEffect } from "react"
+import { useState } from "react";
+import AddUserMod from "./myUserModal";
+import { useEffect } from "react";
 
 
 export default function AdUSers() {
-    const [myUserAd, setMyUserAd] = useState([])
+    const [myUserAd, setMyUserAd] = useState([]);
 
     function getDta() {
         fetch('https://medium-api-psi.vercel.app/api/users')
             .then((res) => res.json())
             .then((data) => {
-                setMyUserAd(data.result)
-                console.log(data.result)
+                setMyUserAd(data.result);
+                // console.log(data.result);
             })
     }
 
     useEffect(() => {
-        getDta()
+        getDta();
     }, [])
 
-    const [addUsrModal, setAddUsrModal] = useState(false)
+    const [addUsrModal, setAddUsrModal] = useState(false);
+
     const addUser = () => {
-        setAddUsrModal(!addUsrModal)
+        setAddUsrModal(!addUsrModal);
     }
 
     const init = {
@@ -32,21 +33,23 @@ export default function AdUSers() {
         password: '',
         organization: '',
     }
-    const [addmyUser, setaddMyUser] = useState(init)
+    const [addmyUser, setaddMyUser] = useState(init);
 
 
     function deleteUser(id) {
-        console.log(id)
         fetch(`https://medium-api-psi.vercel.app/api/users?id=${id}`, {
             method: 'DELETE',
             headers: { 'Content-type': 'application/json' },
-            // body: JSON.stringify(init)
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data)
-                getDta()
+                console.log(data);
+                getDta();
             })
+    }
+
+    function editUser(){
+
     }
     return (
         <>
@@ -78,7 +81,7 @@ export default function AdUSers() {
                                     <td>
                                         <div className="d-flex gap-3">
                                             <div className="btn bg-danger text-light" onClick={() => deleteUser(el._id)}>delete</div>
-                                            <div className="btn bg-warning text-light">edit</div>
+                                            <div className="btn bg-warning text-light" onClick={()=> editUser(el._id)}>edit</div>
                                         </div>
                                     </td>
                                 </tr>

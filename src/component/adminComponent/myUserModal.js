@@ -3,7 +3,7 @@
 export default function AddUserMod({ init, addUsrModal, setAddUsrModal, addUser, addmyUser, setaddMyUser, getDta }) {
 
     function save(e) {
-        e.preventDefault()
+        e.preventDefault();
         fetch('https://medium-api-psi.vercel.app/api/users', {
             method: 'POST',
             headers: { 'Content-Type': "application/json", },
@@ -11,15 +11,15 @@ export default function AddUserMod({ init, addUsrModal, setAddUsrModal, addUser,
         })
             .then((res) => res.json())
             .then((mydata) => {
-                console.log(mydata.result)
+                console.log(mydata.result);
                 getDta();
-                setaddMyUser(init)
-                window.alert('amjilttai')
+                setaddMyUser(init);
+                window.alert('amjilttai');
             })
             .catch(err => {
-                console.log(err)
+                console.log(err);
             })
-        setAddUsrModal(!addUsrModal)
+        setAddUsrModal(!addUsrModal);
     }
 
     return (
