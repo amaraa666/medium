@@ -1,17 +1,15 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './component/header';
-import MainSec from './component/main';
-import TrendNews from './component/trendingNews';
-import Aside from './component/aside';
-import News from './component/news';
 import React, { useState } from 'react';
-import Modal from './component/modal';
 import { Route, Routes } from 'react-router-dom';
 import AdminLog from './component/AdminLogin';
 import Admin from './component/Admin';
-
-
+import Adminlayout from './component/adminlayout';
+import AdNews from './component/adminComponent/AdNews';
+import AdUSers from './component/adminComponent/AdUSers';
+import MAinSec1 from './component/MainSec';
+import MainAd from './component/adminComponent/MainAd';
+import { useEffect } from 'react';
 function App() {
     let myData = {
         user: {
@@ -336,37 +334,37 @@ function App() {
         Modalshow()
         setMyPost(myPostObj)
     }
+
+    const [myDataAd, setMyDataAd] = useState([])
+
+    useEffect(() => {
+        fetch('https://medium-api-psi.vercel.app/api/news')
+            .then((res) => res.json())
+            .then((data) => {
+                setMyDataAd(data.result)
+            })
+    }, [])
+
     return (
         <>
-            {!myAct.adminLogin ? (
-                <div className="container-fluid p-0">
-                    <Modal {...myData} Modalshow={Modalshow} myAct={myAct} setMyAct={setMyAct} AddPost={AddPost} myPost={myPost} setMyPost={setMyPost} />
-                    <Header {...myData} Modalshow={Modalshow} myAct={myAct} setMyAct={setMyAct} />
-                    <MainSec {...myData} myAct={myAct} />
-                    <TrendNews {...myData} myAct={myAct} />
-                    <div className='container-fluid d-flex justify-content-center py-5'>
-                        <div className='row col-8'>
-                            <div className='news col-8'>
-                                <News {...myData} myAct={myAct} setMyAct={setMyAct} isPosted={isPosted} setIsPosted={setIsPosted} />
-                            </div>
-                            <div className='aside col-3'>
-                                <Aside {...myData} />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            ) : (
-                <div>
-                    <Routes>
-                        <Route exact path='/login' element={<AdminLog myAct={myAct} Modalshow={Modalshow} />} />
-                        <Route path='/admin' element={<Admin />} />
-                    </Routes>
-                </div>
-            )}
+            <Routes>
+                <Route exact path='/' element={<MAinSec1 myData={myData} AddPost={AddPost} Modalshow={Modalshow} myAct={myAct} setMyAct={setMyAct} myPost={myPost} setMyPost={setMyPost} isPosted={isPosted} setIsPosted={setIsPosted} />} />
+            </Routes>
+
+            <Routes>
+                <Route exact path='/login' element={<AdminLog myAct={myAct} Modalshow={Modalshow} />} />
+                <Route path='/admin' element={<Admin />} />
+                <Route element={<Adminlayout />}>
+                    <Route index path='/admin' element={<MainAd myDataAd={myDataAd} />} />
+                    <Route path='/addnews' element={<AdNews />} />
+                    <Route path='/addusers' element={<AdUSers />} />
+                </Route>
+            </Routes>
 
         </>
     );
 
 }
+
 
 export default App;

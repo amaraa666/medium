@@ -104,3 +104,9 @@ input {
 ::placeholder {
   color: #000;
 }
+
+
+.adUserMod {
+  position: absolute;
+  background-color: rgba(40, 41, 43, 0.7);
+}

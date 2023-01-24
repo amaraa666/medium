@@ -41,7 +41,7 @@ const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
 
 export function BarChart({ myData }) {
-    console.log(myData)
+    // console.log(myData)
     const data = {
         labels,
         datasets: [

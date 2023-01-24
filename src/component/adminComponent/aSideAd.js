@@ -1,21 +1,21 @@
 
 
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 
-export default function AsideAd(){
-    return(
+export default function AsideAd() {
+    return (
         <>
             <div className="row">
                 <div className="nav d-flex flex-column">
                     <div className="nav-item">
-                        <Link to = '/'className="nav-link text-decoration-none text-dark fs-4">Dashboard</Link>
+                        <NavLink to='/admin' className="nav-link text-decoration-none text-dark fs-4">Dashboard</NavLink>
                     </div>
                     <div className="nav-item">
-                        <Link to = '/adnews'className="nav-link text-decoration-none text-dark fs-4">News</Link>
+                        <NavLink to='/addnews' className="nav-link text-decoration-none text-dark fs-4">News</NavLink>
                     </div>
                     <div className="nav-item">
-                        <Link to = '/adUsers'className="nav-link text-decoration-none text-dark fs-4">Users</Link>
+                        <NavLink to='/addusers' className="nav-link text-decoration-none text-dark fs-4">Users</NavLink>
                     </div>
                 </div>
             </div>

@@ -9,7 +9,6 @@ export default function News({ isPosted, setIsPosted, myAct }) {
     myArr.map((e) => {
       if (e.saved) {
         if (e.id === id1) {
-          console.log()
           e.saved = false;
           setIsPosted(myArr)
         }
